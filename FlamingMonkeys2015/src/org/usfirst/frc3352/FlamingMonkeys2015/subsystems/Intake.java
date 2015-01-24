@@ -37,16 +37,17 @@ public class Intake extends Subsystem {
     public void initDefaultCommand() {
     	
     public void in(){
-    	leftLeftIntake.set(1);
-    	rightRightIntake.set(-1);
+    	leftIntake.set(1);
+    	rightIntake.set(-1);
     }
     public void out(){
-    	rightRightIntake.set(.5);
-    	leftLeftIntake.set(-.5);
-    
+    	rightIntake.set(.5);
+    	leftIntake.set(-.5);
+    }
     public void off(){
-    	 leftLeftIntake.set(0);
-    	 rightRightIntake.set(0);
+    	 leftIntake.set(0);
+    	 rightIntake.set(0);
+    }
     }
    
     	
