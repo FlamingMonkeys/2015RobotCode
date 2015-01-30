@@ -45,7 +45,7 @@ public class Drivetrain extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     
-    public void drive(double left, right){
+    public void drive(double left, double right){
     	this.left.setSetpoint(left);
     	this.right.setSetpoint(right);
     }
