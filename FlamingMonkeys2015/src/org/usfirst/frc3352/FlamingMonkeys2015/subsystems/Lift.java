@@ -40,5 +40,21 @@ public class Lift extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
+    
+    public void liftUp(){
+    	
+    }
+    
+    public void liftDown(){
+    	
+    }
+    
+    public void liftOff(){
+    	
+    }
+    
+    public int getLevel(){
+    	
+    }
 }
 
