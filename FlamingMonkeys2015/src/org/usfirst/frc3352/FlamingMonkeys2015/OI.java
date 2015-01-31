@@ -84,6 +84,10 @@ public class OI {
         liftTrigger.whenActive(new LiftToPosition());
     }
     
+    public boolean runLift(){
+    	return getTargetLevel()==0 ? false:true;
+    }
+    
     public int getTargetLevel(){
     	return operator.getRawButton(4) ? 1:operator.getRawButton(5)? 2:operator.getRawButton(6)? 3:operator.getRawButton(7)? 4:0;
     }
