@@ -11,12 +11,14 @@
 
 package org.usfirst.frc3352.FlamingMonkeys2015.subsystems;
 
+import org.usfirst.frc3352.FlamingMonkeys2015.Robot;
 import org.usfirst.frc3352.FlamingMonkeys2015.RobotMap;
 import org.usfirst.frc3352.FlamingMonkeys2015.commands.*;
-import edu.wpi.first.wpilibj.*;
-import edu.wpi.first.wpilibj.CounterBase.EncodingType; import edu.wpi.first.wpilibj.PIDSource.PIDSourceParameter;
-import edu.wpi.first.wpilibj.smartdashboard.*;
 
+import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+import edu.wpi.first.wpilibj.PIDSource.PIDSourceParameter;
+import edu.wpi.first.wpilibj.smartdashboard.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 

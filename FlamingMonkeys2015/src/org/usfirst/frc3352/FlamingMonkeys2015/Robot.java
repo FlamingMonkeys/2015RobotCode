@@ -15,6 +15,8 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc3352.FlamingMonkeys2015.commands.*;
 import org.usfirst.frc3352.FlamingMonkeys2015.subsystems.*;
 
@@ -69,6 +71,7 @@ public class Robot extends IterativeRobot {
      * You can use it to reset subsystems before shutting down.
      */
     public void disabledInit(){
+    	SmartDashboard.putNumber("Test", 1);
 
     }
 
@@ -94,6 +97,7 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+        SmartDashboard.putNumber("Test", 0);
     }
 
     /**
