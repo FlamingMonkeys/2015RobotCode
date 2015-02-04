@@ -18,7 +18,8 @@ import org.usfirst.frc3352.FlamingMonkeys2015.Robot;
  *
  */
 public class  LiftToPosition extends Command {
-
+	int current;
+	int target;
     public LiftToPosition() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -30,23 +31,37 @@ public class  LiftToPosition extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	target=Robot.oi.getTargetLevel();
+    	current=Robot.lift.getLevel();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	while(target<current){
+    		Robot.lift.liftUp();
+    		current=Robot.lift.getLevel();
+    	}
+    	while(target>current){
+    		Robot.lift.liftDown();
+    		current=Robot.lift.getLevel();
+    	}	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        
+    	return current==target;
+        
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.lift.liftOff();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }
