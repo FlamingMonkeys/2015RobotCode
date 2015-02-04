@@ -54,7 +54,7 @@ public class Lift extends Subsystem {
     }
     
     public int getLevel(){
-    	
+    	return 0;
     }
 }
 
