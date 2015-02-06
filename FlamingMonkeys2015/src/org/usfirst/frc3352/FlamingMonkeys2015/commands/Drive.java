@@ -15,11 +15,23 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc3352.FlamingMonkeys2015.Robot;
 
 /**
- *
+ *	Jack is a boss.
  */
-public class  Drive extends Command {
+public class  Drive extends Command 
+{
+    double rightPreviousVal;
+    double leftPreviousVal;
+    final double rampLimit = .05;
+    final double kDeadband = .2;
+    final double kGain = .8;
+    double turnVal;
+    double forwardVal;
+    double motorVals[] = new double[2];
+    double leftVal;
+    double rightVal;
 
-    public Drive() {
+    public Drive() 
+    {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
 
@@ -29,11 +41,25 @@ public class  Drive extends Command {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    protected void initialize() 
+    {
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    protected void execute() 
+    {
+    	 forwardVal = inverseDeadband(Robot.oi.getForwardSpeed());
+         turnVal = Utils.deadband(Robot.oi.getTurnSpeed(), .2);
+         turnVal = quickTurn(turnVal, forwardVal);
+         motorVals[0]=forwardVal+turnVal;
+         motorVals[1]=forwardVal-turnVal;
+         motorVals = saturation(motorVals[0], motorVals[1]);
+         leftVal = ramp(motorVals[0], leftPreviousVal);
+         rightVal = ramp(motorVals[1], rightPreviousVal);
+         Robot.drivetrain.drive(leftVal, rightVal);
+         leftPreviousVal = leftVal;
+         rightPreviousVal = rightVal;
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -42,11 +68,49 @@ public class  Drive extends Command {
     }
 
     // Called once after isFinished returns true
-    protected void end() {
+    protected void end() 
+    {
+    	Robot.drivetrain.drive(0, 0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() {
+    protected void interrupted() 
+    {
+    	end();
     }
+    public double quickTurn(double turnSpeed, double forwardSpeed)
+    {
+        if(forwardSpeed>0)
+        {
+            turnSpeed = -forwardSpeed*turnSpeed;
+        }
+        else if(forwardSpeed<0)
+        {
+            turnSpeed = -forwardSpeed*turnSpeed;
+        }
+        else
+        {
+            turnSpeed = -turnSpeed;
+        }
+        return turnSpeed;
+    }
+    public double[] saturation(double leftSpeed, double rightSpeed)
+    {
+        double maxMagnitude;
+        double speeds[] = new double[2];
+        maxMagnitude=Math.max(Math.abs(leftSpeed), Math.abs(rightSpeed));
+        if(maxMagnitude>1)
+        {
+            speeds[0]=leftSpeed/maxMagnitude;
+            speeds[1]=rightSpeed/maxMagnitude;
+        }
+        else
+        {
+            speeds[0]=leftSpeed;
+            speeds[1]=rightSpeed;
+        }
+        return speeds;
+    }
+    
 }
