@@ -37,11 +37,11 @@ public class  LiftToPosition extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	while(target<current){
+    	while(target>current){
     		Robot.lift.liftUp();
     		current=Robot.lift.getLevel();
     	}
-    	while(target>current){
+    	while(target<current){
     		Robot.lift.liftDown();
     		current=Robot.lift.getLevel();
     	}	
