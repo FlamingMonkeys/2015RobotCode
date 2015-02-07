@@ -42,19 +42,19 @@ public class Lift extends Subsystem {
     }
     
     public void liftUp(){
-    	
+    	liftMotor.set(1);
     }
     
     public void liftDown(){
-    	
+    	liftMotor.set(-1);
     }
     
     public void liftOff(){
-    	
+    	liftMotor.set(0);
     }
     
     public int getLevel(){
-    	return 0;
+    	return position1.get() ? 1:position2.get()? 2:position3.get()? 3:0;
     }
 }
 
