@@ -24,8 +24,10 @@ public class Shift extends Command {
     protected void execute() {
     	if(isHigh){
     		Robot.shifter.shiftDown();
+    		isHigh=false;
     	}else{
     		Robot.shifter.shiftUp();
+    		isHigh=true;
     	}
     	isFinished=true;
     }

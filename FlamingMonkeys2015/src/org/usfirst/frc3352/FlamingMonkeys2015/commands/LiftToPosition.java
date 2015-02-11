@@ -13,6 +13,7 @@ package org.usfirst.frc3352.FlamingMonkeys2015.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc3352.FlamingMonkeys2015.Robot;
+import edu.wpi.first.wpilibj.smartdashboard.*;
 
 /**
  *
@@ -33,30 +34,35 @@ public class  LiftToPosition extends Command {
     protected void initialize() {
     	target=Robot.oi.getTargetLevel();
     	current=Robot.lift.getLevel();
+    	SmartDashboard.putNumber("target", target);
+    	SmartDashboard.putNumber("current", current);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	while(target>current){
+    	current=lastLevel();
+		target=lastTarget();
+		SmartDashboard.putNumber("target", target);
+    	SmartDashboard.putNumber("current", current);
+    	if(target>current){
     		Robot.lift.liftUp();
-    		current=Robot.lift.getLevel();
-    	}
-    	while(target<current){
+        	SmartDashboard.putString("liftDirection", "up");
+    	}else if(target<current){
     		Robot.lift.liftDown();
-    		current=Robot.lift.getLevel();
-    	}	
+        	SmartDashboard.putString("liftDirection", "down");
+    	}
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        
     	return current==target;
-        
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	Robot.lift.liftOff();
+    	SmartDashboard.putString("liftDirection", "off");
     }
 
     // Called when another command which requires one or more of the same
@@ -64,4 +70,21 @@ public class  LiftToPosition extends Command {
     protected void interrupted() {
     	end();
     }
+    
+    private int lastLevel(){
+    	int l=0;
+    	if(Robot.lift.getLevel()>0){
+    		l = Robot.lift.getLevel();
+    	}
+    	return l;
+    }
+    
+    private int lastTarget(){
+    	int t=0;
+    	if(Robot.oi.getTargetLevel()>0){
+    		t = Robot.oi.getTargetLevel();
+    	}
+    	return t;
+    }
+    
 }

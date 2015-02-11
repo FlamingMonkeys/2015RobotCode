@@ -52,10 +52,10 @@ public class RobotMap {
         drivetrainLeftMotor = new Talon(0);
         LiveWindow.addActuator("Drivetrain", "LeftMotor", (Talon) drivetrainLeftMotor);
         
-        drivetrainLeft = new PIDController(1.0, 0.0, 0.0, 1.0, drivetrainLeftEncoder, drivetrainLeftMotor, 0.02);
+        /**drivetrainLeft = new PIDController(1.0, 0.0, 0.0, 1.0, drivetrainLeftEncoder, drivetrainLeftMotor, 0.02);
         LiveWindow.addActuator("Drivetrain", "Left", drivetrainLeft);
         drivetrainLeft.setContinuous(false); drivetrainLeft.setAbsoluteTolerance(0.2); 
-        drivetrainLeft.setOutputRange(-1.0, 1.0);        
+        drivetrainLeft.setOutputRange(-1.0, 1.0);        */
 
         drivetrainRightEncoder = new Encoder(2, 3, false, EncodingType.k4X);
         LiveWindow.addSensor("Drivetrain", "RightEncoder", drivetrainRightEncoder);
@@ -64,10 +64,10 @@ public class RobotMap {
         drivetrainRightMotor = new Talon(1);
         LiveWindow.addActuator("Drivetrain", "RightMotor", (Talon) drivetrainRightMotor);
         
-        drivetrainRight = new PIDController(1.0, 0.0, 0.0, 1.0, drivetrainRightEncoder, drivetrainRightMotor, 0.02);
+        /**drivetrainRight = new PIDController(1.0, 0.0, 0.0, 1.0, drivetrainRightEncoder, drivetrainRightMotor, 0.02);
         LiveWindow.addActuator("Drivetrain", "Right", drivetrainRight);
         drivetrainRight.setContinuous(true); drivetrainRight.setAbsoluteTolerance(0.2); 
-        drivetrainRight.setOutputRange(-1.0, 1.0);        
+        drivetrainRight.setOutputRange(-1.0, 1.0);        */
 
         liftLiftMotor = new Talon(2);
         LiveWindow.addActuator("Lift", "LiftMotor", (Talon) liftLiftMotor);
