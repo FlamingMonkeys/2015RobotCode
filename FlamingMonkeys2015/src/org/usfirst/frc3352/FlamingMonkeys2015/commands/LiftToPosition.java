@@ -40,10 +40,10 @@ public class  LiftToPosition extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	current=lastLevel();
-		target=lastTarget();
-		SmartDashboard.putNumber("target", target);
-    	SmartDashboard.putNumber("current", current);
+    	current=levelRegister();
+		target=targetRegister();
+		SmartDashboard.putNumber("targetCommand", target);
+    	SmartDashboard.putNumber("currentCommand", current);
     	if(target>current){
     		Robot.lift.liftUp();
         	SmartDashboard.putString("liftDirection", "up");
@@ -51,7 +51,6 @@ public class  LiftToPosition extends Command {
     		Robot.lift.liftDown();
         	SmartDashboard.putString("liftDirection", "down");
     	}
-    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -71,20 +70,19 @@ public class  LiftToPosition extends Command {
     	end();
     }
     
-    private int lastLevel(){
+    private int levelRegister(){
     	int l=0;
     	if(Robot.lift.getLevel()>0){
     		l = Robot.lift.getLevel();
     	}
     	return l;
     }
-    
-    private int lastTarget(){
+
+    private int targetRegister(){
     	int t=0;
     	if(Robot.oi.getTargetLevel()>0){
     		t = Robot.oi.getTargetLevel();
     	}
     	return t;
     }
-    
 }

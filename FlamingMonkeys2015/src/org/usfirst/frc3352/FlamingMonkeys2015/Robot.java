@@ -105,7 +105,7 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
         PeriodicTasks.run();
         SmartDashboard.putNumber("liftMotor", lift.liftMotor.get());
-        SmartDashboard.putNumber("targetLevel", oi.getTargetLevel());
+        SmartDashboard.putNumber("oiTargetLevel", oi.getTargetLevel());
     }
 
     /**
