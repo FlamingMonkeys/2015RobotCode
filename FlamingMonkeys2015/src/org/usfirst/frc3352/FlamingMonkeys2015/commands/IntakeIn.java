@@ -40,12 +40,11 @@ public class  IntakeIn extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	SmartDashboard.putNumber("TestIn", i++);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !Robot.oi.operator.getRawButton(1);
+        return !Robot.oi.operator.getRawButton(5);
     }
 
     // Called once after isFinished returns true

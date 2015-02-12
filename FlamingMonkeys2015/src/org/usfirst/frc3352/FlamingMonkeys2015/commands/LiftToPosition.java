@@ -21,6 +21,8 @@ import edu.wpi.first.wpilibj.smartdashboard.*;
 public class  LiftToPosition extends Command {
 	int current;
 	int target;
+	static int l=0;
+	static int t=0;
     public LiftToPosition() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -71,7 +73,6 @@ public class  LiftToPosition extends Command {
     }
     
     private int levelRegister(){
-    	int l=0;
     	if(Robot.lift.getLevel()>0){
     		l = Robot.lift.getLevel();
     	}
@@ -79,7 +80,6 @@ public class  LiftToPosition extends Command {
     }
 
     private int targetRegister(){
-    	int t=0;
     	if(Robot.oi.getTargetLevel()>0){
     		t = Robot.oi.getTargetLevel();
     	}
