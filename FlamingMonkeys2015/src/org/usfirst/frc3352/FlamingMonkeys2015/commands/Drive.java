@@ -13,8 +13,8 @@ package org.usfirst.frc3352.FlamingMonkeys2015.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import org.usfirst.frc3352.FlamingMonkeys2015.Robot;
+import org.usfirst.frc3352.FlamingMonkeys2015.RobotMap;
 
 /**
  *	Jack is a boss.
@@ -23,7 +23,7 @@ public class  Drive extends Command
 {
     double rightPreviousVal;
     double leftPreviousVal;
-    final double rampLimit = .05;
+    final double rampLimit = .03;
     final double kDeadband = .2;
     final double kGain = .8;
     double turnVal;
@@ -43,21 +43,29 @@ public class  Drive extends Command
     }
     protected void initialize() 
     {
-    	
+    	RobotMap.drivetrainLeftEncoder.reset();
     }
     protected void execute() 
     {
-    	 forwardVal = inverseDeadband(Robot.oi.getForwardSpeed());
-         turnVal = deadband(Robot.oi.getTurnSpeed(), .2);
-         turnVal = quickTurn(turnVal, forwardVal);
-         motorVals[0]=forwardVal+turnVal;
-         motorVals[1]=forwardVal-turnVal;
-         motorVals = saturation(motorVals[0], motorVals[1]);
-         leftVal = ramp(motorVals[0], leftPreviousVal);
-         rightVal = ramp(motorVals[1], rightPreviousVal);
-         Robot.drivetrain.drive(leftVal, rightVal);
-         leftPreviousVal = leftVal;
-         rightPreviousVal = rightVal;
+    	if(Robot.driver){
+	    	 forwardVal = inverseDeadband(Robot.oi.getForwardSpeed());
+	         turnVal = deadband(Robot.oi.getTurnSpeed(), .25);
+	         turnVal = quickTurn(turnVal, forwardVal);
+	         motorVals[0]=forwardVal+turnVal;
+	         motorVals[1]=forwardVal-turnVal;
+	         motorVals = saturation(motorVals[0], motorVals[1]);
+	         leftVal = ramp(motorVals[0], leftPreviousVal);
+	         rightVal = ramp(motorVals[1], rightPreviousVal);
+	         Robot.drivetrain.drive(leftVal, rightVal);
+	         leftPreviousVal = leftVal;
+	         rightPreviousVal = rightVal;
+    	}else{
+    		forwardVal = -Robot.oi.getLeftJoyForward();
+    		turnVal = Robot.oi.getRightJoyTurn();
+    		leftVal = forwardVal+turnVal;
+    		rightVal = forwardVal-turnVal;
+    		Robot.drivetrain.drive(leftVal, rightVal);
+    	}
     }
     protected boolean isFinished()
     {
@@ -102,15 +110,15 @@ public class  Drive extends Command
     {
         if(forwardSpeed>0)
         {
-            turnSpeed = -forwardSpeed*turnSpeed;
+            turnSpeed = forwardSpeed*turnSpeed;
         }
         else if(forwardSpeed<0)
         {
-            turnSpeed = -forwardSpeed*turnSpeed;
+            turnSpeed = forwardSpeed*turnSpeed;
         }
         else
         {
-            turnSpeed = -turnSpeed;
+            turnSpeed = .7*turnSpeed;
         }
         return turnSpeed;
     }

@@ -14,7 +14,7 @@ package org.usfirst.frc3352.FlamingMonkeys2015.subsystems;
 import org.usfirst.frc3352.FlamingMonkeys2015.RobotMap;
 //import org.usfirst.frc3352.FlamingMonkeys2015.commands.*;
 import edu.wpi.first.wpilibj.*;
-
+import org.usfirst.frc3352.FlamingMonkeys2015.commands.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -39,6 +39,7 @@ public class Lift extends Subsystem {
 	
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new JoystickLift());
     }
     
     public void liftUp(){

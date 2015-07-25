@@ -23,5 +23,8 @@ public class PeriodicTasks {
 		SmartDashboard.putBoolean("switch1", !Robot.lift.position1.get());
 		SmartDashboard.putBoolean("switch2", !Robot.lift.position2.get());
 		SmartDashboard.putBoolean("switch3", !Robot.lift.position3.get());
+		SmartDashboard.putNumber("left distance", Robot.drivetrain.leftEncoder.getDistance());
+		SmartDashboard.putNumber("right distance", Robot.drivetrain.rightEncoder.getDistance());
+		SmartDashboard.putBoolean("auto running", Robot.autonomousCommand.isRunning());
 	}
 }
