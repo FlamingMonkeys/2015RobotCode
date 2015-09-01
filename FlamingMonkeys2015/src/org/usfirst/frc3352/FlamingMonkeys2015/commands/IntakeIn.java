@@ -44,7 +44,7 @@ public class  IntakeIn extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !Robot.oi.operator.getRawButton(5);
+        return !Robot.oi.driver1.getRawButton(5);
     }
 
     // Called once after isFinished returns true

@@ -54,8 +54,10 @@ public class  Drive extends Command
 	         motorVals[0]=forwardVal+turnVal;
 	         motorVals[1]=forwardVal-turnVal;
 	         motorVals = saturation(motorVals[0], motorVals[1]);
-	         leftVal = ramp(motorVals[0], leftPreviousVal);
-	         rightVal = ramp(motorVals[1], rightPreviousVal);
+	         //leftVal = ramp(motorVals[0], leftPreviousVal);
+	         //rightVal = ramp(motorVals[1], rightPreviousVal);
+	         leftVal = motorVals[0];
+	         rightVal = motorVals[1];
 	         Robot.drivetrain.drive(leftVal, rightVal);
 	         leftPreviousVal = leftVal;
 	         rightPreviousVal = rightVal;

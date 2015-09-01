@@ -75,7 +75,6 @@ public class Robot extends IterativeRobot {
     public void disabledInit(){
     	SmartDashboard.putNumber("auto mode", autoSelect);
     	SmartDashboard.putBoolean("driver", driver);
-
     }
 
     public void disabledPeriodic() {
@@ -137,10 +136,11 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
     	if(enabled){
-        Scheduler.getInstance().run();
-        PeriodicTasks.run();
-        SmartDashboard.putNumber("liftMotor", lift.liftMotor.get());
-        SmartDashboard.putNumber("oiTargetLevel", oi.getTargetLevel());}
+	        Scheduler.getInstance().run();
+	        PeriodicTasks.run();
+	        SmartDashboard.putNumber("liftMotor", lift.liftMotor.get());
+	        SmartDashboard.putNumber("oiTargetLevel", oi.getTargetLevel());
+        }
     	lastPress = currentPress;
     	currentPress = Robot.oi.driver1.getRawButton(8);
     	if(currentPress&&!lastPress){
